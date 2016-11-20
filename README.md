@@ -7,6 +7,7 @@ Authentication is the process of verifying that a user is who he/she says she is
 ## Best practice
 Current best practice - use JWT (https://jwt.io/introduction/) 
 Try to use an existing framework. Do not make your own authentication scheme - it is harder than you think. 
+For front end use this NPM https://www.npmjs.com/package/jsonwebtoken (`npm install --save jsonwebtoken`)
 
 ## Authentication overview
 ### Basic flow
@@ -23,6 +24,16 @@ The token will remain in storage (not the user profile)
 ### Backend endpoints required
 1) /your_app/auth/email - first request to get token
 2) /your_app/auth/renew  - subsequent requests to update token 
+
+Using bcrypt (encryption to store your passwords securely in database) 
+https://www.npmjs.com/package/bcrypt-nodejs
+
+Encoding and decoding JWTs 
+https://github.com/auth0/node-jsonwebtoken
+
+Storing JWT web toekns 
+https://github.com/grevory/angular-local-storage
+
 
 ### Implementation
 NOTE that every request to your app MUST be authenticated - how do we do this? 
