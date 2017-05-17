@@ -1,5 +1,5 @@
 /**
- * Resources: 
+ * Resources:
  * http://www.restapitutorial.com/httpstatuscodes.html
  */
 
@@ -43,6 +43,8 @@ app.use(bodyParser.json());
 
 /**
  * Authenticate a user using email address and return an object
+ * DO NOT WRITE YOUR LOGIN END POINT LIKE THIS
+ * USE THE IMPLEMENTATION AS BELOW FOR /auth/email2
  */
 app.post('/auth/email', function(request, response) {
   var user = request.body;
@@ -101,7 +103,7 @@ app.post('/user/add', function(request, response) {
         console.log(err);
         return sendError(response, 400, 'Error adding user')
       } else {
-        response.json(user);
+        response.status(201).json(user);
         response.end();
       }
     })
@@ -115,7 +117,7 @@ app.post('/user/add', function(request, response) {
  */
 app.get('/api/secret_stuff', function(request, response) {
   var header = request.get('Authorization');
-  var token = null;
+  var token = header;
   if (header && header.split(' ')[0] === 'Bearer') {
     token = header.split(' ')[1];
   }
@@ -131,9 +133,9 @@ app.get('/api/secret_stuff', function(request, response) {
 
 /**
  * Generic error reporting to client
- * @param {response} response response to requestor 
- * @param {int} code HTTP status code to return to requestor 
- * @param {string} message Short description of error 
+ * @param {response} response response to requestor
+ * @param {int} code HTTP status code to return to requestor
+ * @param {string} message Short description of error
  */
 function sendError(response, code, message) {
   response.statusCode = code;
